@@ -8,8 +8,7 @@ let profile = {
 // Hamburger menu
 
 window.addEventListener('DOMContentLoaded', () => {
-    const menu = document.querySelector('.header-menu'),
-    menuItem = document.querySelectorAll('.header-menu__item'),
+    const menuItem = document.querySelectorAll('.header-menu__item'),
     hamburger = document.querySelector('.hamburger');
 
     hamburger.addEventListener('click', () => {
@@ -54,7 +53,7 @@ $(document).ready(function(){
         $('.hamburger__close').on('click', function() {
             $('.header-menu').slideToggle("slow");
         });
-    };
+    }
 
 
 // About slider
@@ -94,19 +93,19 @@ $(document).ready(function(){
         $('#auth').slideToggle("slow");
         } else if ($('#profile').hasClass('profile_logged-in')) {
         $('#modal-logged').slideToggle("slow");
-        };
+        }
     });
 
     if (w <= 1024) {
-        $('.profile').on('click', function(e){
+        $('.profile').on('click', function(){
             $('.header-menu').slideUp("slow");
             $('.hamburger').removeClass('hamburger_active');
         });
 
-        $('.hamburger').on('click', function(e){
+        $('.hamburger').on('click', function(){
             $('.modal-profile').slideUp("slow");
         });
-    };
+    }
 
     $('.hamburger').on('click', function(){
         $('.modal-profile').slideUp("slow");
@@ -240,7 +239,7 @@ $(document).ready(function(){
                 }
               }
         });
-    };
+    }
 
     validateForms('#register_form');
     validateForms('#login_form');
@@ -259,7 +258,7 @@ $(document).ready(function(){
         if (e.target != auth[0] && !auth.has(e.target).length) {
             auth.slideUp('fast');
             return;
-        };
+        }
     
         if (w <= 1024) {
         let menu = $('.header-menu');
@@ -267,7 +266,7 @@ $(document).ready(function(){
             menu.slideUp('fast');
             $('.hamburger').removeClass('hamburger_active');
             return;
-        }};
+        }}
     });
     checkBookBtns()
     
@@ -351,13 +350,13 @@ reg_submitBtn.addEventListener('click', checkReg);
 function checkReg() {
     $('#register_container').fadeOut(300);
     $("div.b-modal").remove();
-};
+}
 
 
 function addUserItem() {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('profile', JSON.stringify(profile));
-};
+}
 
 function changeHandler() {
     localStorage.setItem(this.name, this.value);
@@ -368,17 +367,18 @@ function checkStorage() {
     for (let i = 0; i < reg_formFields.length; i++) {
         if (reg_formFields[i].type !== "submit") {
             reg_formFields[i].value = localStorage.getItem(reg_formFields[i].name, reg_formFields[i].value);
-        };
-    };
+        }
+    }
 
     attachEvents();
-};
+}
 
 function attachEvents() {
     for (let i = 0; i < reg_formFields.length; i++) {
         reg_formFields[i].addEventListener('change', changeHandler);
     }
-};
+}
+
 checkStorage();
 
 
@@ -400,7 +400,7 @@ log_form.addEventListener("click", (e) => {
 
 function addNewUserItem() {
     localStorage.setItem('user_log', JSON.stringify(user_log));
-};
+}
 
 let isLogin = false;
 function checkLogin() {
@@ -431,15 +431,15 @@ function checkLogin() {
             } else {
             console.log('Error');
             isLogin = false;
-        };
-    };
-};
+        }
+    }
+}
 
 function popupBuyCard() {
     $('#buy-card__modal').bPopup({
         closeClass: 'buy-card__close'
     });
-};
+}
 
 function changeNewHandler() {
     localStorage.setItem(this.name, this.value);
@@ -450,11 +450,11 @@ function checkNewStorage() {
     for (let i = 0; i < log_formFields.length; i++) {
         if (log_formFields[i].type !== "submit") {
             log_formFields[i].value = localStorage.getItem(log_formFields[i].name, log_formFields[i].value);
-        };
-    };
+        }
+    }
 
     attachNewEvents();
-};
+}
 
 function attachNewEvents() {
     for (let i = 0; i < log_formFields.length; i++) {
@@ -488,7 +488,7 @@ function checkformLog() {
     for (var i = 0; i < log_check.length; i++) {
         if (log_check[i].value.length == 0) {
             cansubmit = false
-        };
+        }
     }
     document.getElementById("modal__button_log").disabled = !cansubmit;
 }
@@ -538,33 +538,33 @@ buyCardForm.addEventListener('submit', checkPurchase);
 function checkPurchase() {
     $('#buy-card__modal').fadeOut(300);
     $("div.b-modal").remove();
-};
+}
 
 function addNewCard() {
     localStorage.setItem('library_card', JSON.stringify(library_card));
-};
+}
 
 function changeProcessor() {
     localStorage.setItem(this.name, this.value);
     library_card[this.name] = this.value;
-};
+}
 
 function checkCardStorage() {
     for (let i = 0; i < buyCardFormFields.length; i++) {
         if (buyCardFormFields[i].type !== "submit") {
             buyCardFormFields[i].value = localStorage.getItem(buyCardFormFields[i].name, buyCardFormFields[i].value);
-        };
-    };
+        }
+    }
 
     attachCardNewEvents();
-};
+}
 
 
 function attachCardNewEvents() {
     for (let i = 0; i < buyCardFormFields.length; i++) {
         buyCardFormFields[i].addEventListener('change', changeProcessor);
     }
-};
+}
 
 checkCardStorage();
 
@@ -575,12 +575,11 @@ function incrementVisit() {
     profile.visits += 1;
     $(".logged-in__visits__number").text(profile.visits);
     addProfile(profile);
-};
+}
 
 function addProfile(profile) {
     localStorage.setItem('profile', JSON.stringify(profile));
-};
-
+}
 
 
 // Without book card
@@ -591,8 +590,8 @@ function checkBookBtns() {
         $('.book-card__button').addClass('btn-disabled')
     } else {
         $('.book-card__button').removeClass('btn-disabled')
-    };
-};
+    }
+}
 
 
 // Books counter in my profile
@@ -602,7 +601,7 @@ function addBtnListener() {
     for (let i = 0; i < buyCardBtn.length; i++) {
         buyCardBtn[i].addEventListener('click', incrementBooks);
     }
-};
+}
 
 function incrementBooks() {
     let parent = this.parentNode,
@@ -621,14 +620,14 @@ function incrementBooks() {
         profile.books.push(bookName);
         addProfile(profile);
         addBooksToProfile(profile.books);
-    };
-};
+    }
+}
 
 function addBooksToProfile(books) {
     $(".rented-books__list").empty();
     for (let i = 0; i < books.length; i++) {
         $(".rented-books__list").append("<li class='rented-books__item'>" + books[i] + "</li>");
-    };
+    }
 }
 addBtnListener();
 
